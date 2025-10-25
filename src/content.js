@@ -1,15 +1,12 @@
-dotenv.config({
-  path: "./.env",
-});
+import { API_KEY, VOICE_ID } from "./config.js";
 
 async function speechFunction(translatedTxt) {
-
   const response = await fetch(
-    `https://api.elevenlabs.io/v1/text-to-speech/${process.env.VOICE_ID}`,
+    `https://api.elevenlabs.io/v1/text-to-speech/${VOICE_ID}`,
     {
       method: "POST",
       headers: {
-        "xi-api-key": process.env.API_KEY,
+        "xi-api-key": API_KEY,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
