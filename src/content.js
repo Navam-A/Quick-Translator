@@ -85,12 +85,15 @@ document.addEventListener("mouseup", async (e) => {
       res.remove();
     };
 
+    // Append the translated text before for measuring its width 
+    document.body.appendChild(res);
+
     let speakBtn = document.createElement("div");
     speakBtn.id = "speakBtn";
     speakBtn.innerText = "Speak🔊";
     Object.assign(speakBtn.style, {
       position: "absolute",
-      left: e.pageX + 50 + "px",
+      left: (e.pageX + res.offsetWidth) + 10 + "px",
       top: e.pageY + "px",
       background: "#443f3fff",
       color: "#fff",
@@ -110,8 +113,7 @@ document.addEventListener("mouseup", async (e) => {
 
     // Auto remove translation after 5 sec
     setTimeout(() => res.remove(), 5000);
-
-    document.body.appendChild(res);
+    
     document.body.appendChild(speakBtn);
   };
 
