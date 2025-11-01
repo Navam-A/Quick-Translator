@@ -62,6 +62,8 @@ document.addEventListener("mouseup", async (e) => {
     );
 
     const data = await response.json();
+    console.log(data);
+
     popUP.remove();
 
     const res = document.createElement("div");
@@ -85,7 +87,7 @@ document.addEventListener("mouseup", async (e) => {
       res.remove();
     };
 
-    // Append the translated text before for measuring its width 
+    // Append the translated text before for measuring its width
     document.body.appendChild(res);
 
     let speakBtn = document.createElement("div");
@@ -93,7 +95,7 @@ document.addEventListener("mouseup", async (e) => {
     speakBtn.innerText = "Speak🔊";
     Object.assign(speakBtn.style, {
       position: "absolute",
-      left: (e.pageX + res.offsetWidth) + 10 + "px",
+      left: e.pageX + res.offsetWidth + 10 + "px",
       top: e.pageY + "px",
       background: "#443f3fff",
       color: "#fff",
@@ -112,8 +114,11 @@ document.addEventListener("mouseup", async (e) => {
     };
 
     // Auto remove translation after 5 sec
-    setTimeout(() => res.remove(), 5000);
-    
+    setTimeout(() => {
+      res.remove();
+      speakBtn.remove();
+    }, 5000);
+
     document.body.appendChild(speakBtn);
   };
 
